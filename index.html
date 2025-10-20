@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI와 디지털 협업도구로 여는 프로젝트 수업의 미래</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.85;
+            font-style: italic;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            border-left: 5px solid #fa709a;
+        }
+        
+        .intro h2 {
+            color: #fa709a;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .intro p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .worksheets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .worksheet-card {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .worksheet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+        
+        .worksheet-card .number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .worksheet-card h3 {
+            color: #667eea;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .worksheet-card p {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .worksheet-card .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            border-top: 3px solid #667eea;
+        }
+        
+        .footer h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .worksheets {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 AI와 디지털 협업도구로 여는<br>프로젝트 수업의 미래</h1>
+            <p>ESG × 지역사회 문제해결 프로젝트 기반 학습 (PBL)</p>
+            <p class="subtitle">울산과학대학교 | 교수자 대상 특강 자료</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>📚 워크시트 안내</h2>
+                <p>이 페이지는 <strong>"AI와 디지털 협업도구로 여는 프로젝트 수업의 미래"</strong> 특강의 실습 워크시트 모음입니다.</p>
+                <p>각 워크시트는 독립적으로 활용 가능하며, Gemini Gems 제작부터 프로젝트 설계, 디지털 도구 활용, 단계별 로드맵까지 포괄합니다.</p>
+                <p><strong>💡 사용 방법:</strong> 아래 카드를 클릭하여 각 워크시트로 이동하세요. 모든 자료는 브라우저에서 바로 열람 가능하며, 인쇄 또는 다운로드도 가능합니다.</p>
+            </div>
+            
+            <div class="worksheets">
+                <div class="worksheet-card">
+                    <div class="number">1</div>
+                    <h3>나만의 Gem 만들기 실습 워크시트</h3>
+                    <p>4가지 Gemini Gems의 상세 Instruction과 활용법을 담은 실습 가이드입니다. 복사 버튼으로 바로 사용 가능합니다.</p>
+                    <div class="tags">
+                        <span class="tag">💎 Gemini Gems</span>
+                        <span class="tag">📋 교수자용 2개</span>
+                        <span class="tag">👨‍🎓 학생용 2개</span>
+                    </div>
+                    <a href="1_나만의_Gem_만들기_실습워크시트.html" class="btn">워크시트 열기 →</a>
+                </div>
+                
+                <div class="worksheet-card">
+                    <div class="number">2</div>
+                    <h3>ESG 프로젝트 수업설계 플래너</h3>
+                    <p>프로젝트 수업 전체를 설계하는 템플릿입니다. ESG 영역, 7단계 프로세스, 평가 계획을 포함합니다.</p>
+                    <div class="tags">
+                        <span class="tag">🌍 ESG 프레임워크</span>
+                        <span class="tag">📊 7단계 프로세스</span>
+                        <span class="tag">✏️ 입력 가능</span>
+                    </div>
+                    <a href="2_ESG_프로젝트_수업설계_플래너.html" class="btn">워크시트 열기 →</a>
+                </div>
+                
+                <div class="worksheet-card">
+                    <div class="number">3</div>
+                    <h3>AI 활용 가이드라인 (학생 배포용)</h3>
+                    <p>학생들에게 배포할 수 있는 AI 활용 가이드라인입니다. 허용 범위와 금지 사항을 명확히 제시합니다.</p>
+                    <div class="tags">
+                        <span class="tag">✅ 허용 vs ❌ 금지</span>
+                        <span class="tag">📖 실전 예시</span>
+                        <span class="tag">👨‍🎓 학생 배포용</span>
+                    </div>
+                    <a href="3_AI_활용_가이드라인_학생배포용.html" class="btn">워크시트 열기 →</a>
+                </div>
+                
+                <div class="worksheet-card">
+                    <div class="number">4</div>
+                    <h3>디지털 협업도구 활용 가이드</h3>
+                    <p>알로, 구글Docs, 캔바 3가지 도구의 통합 활용법과 프로젝트 단계별 워크플로우를 안내합니다.</p>
+                    <div class="tags">
+                        <span class="tag">💬 알로</span>
+                        <span class="tag">📄 구글Docs</span>
+                        <span class="tag">🎨 캔바</span>
+                    </div>
+                    <a href="4_디지털협업도구_활용가이드.html" class="btn">워크시트 열기 →</a>
+                </div>
+                
+                <div class="worksheet-card">
+                    <div class="number">5</div>
+                    <h3>단계별 실천 로드맵</h3>
+                    <p>Level 1→2→3 단계별 도입 전략과 체크리스트입니다. 각 단계의 소요시간과 성공 지표를 제시합니다.</p>
+                    <div class="tags">
+                        <span class="tag">🚀 Level 1-3</span>
+                        <span class="tag">✓ 체크리스트</span>
+                        <span class="tag">📈 성공 지표</span>
+                    </div>
+                    <a href="5_단계별_실천_로드맵.html" class="btn">워크시트 열기 →</a>
+                </div>
+                
+                <div class="worksheet-card">
+                    <div class="number">6</div>
+                    <h3>특강 핵심요약 원페이저</h3>
+                    <p>특강의 모든 핵심 내용을 한 페이지에 요약한 참고 자료입니다. 특강 후 복습용으로 최적입니다.</p>
+                    <div class="tags">
+                        <span class="tag">📄 1페이지 요약</span>
+                        <span class="tag">🎯 핵심 개념</span>
+                        <span class="tag">🔖 Quick Reference</span>
+                    </div>
+                    <a href="6_특강_핵심요약_원페이저.html" class="btn">워크시트 열기 →</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3>📧 문의 및 활용</h3>
+            <p>이 자료는 교육 목적으로 자유롭게 활용하실 수 있습니다.</p>
+            <p><strong>제작:</strong> 울산과학대학교 교수학습지원센터</p>
+            <p><strong>특강:</strong> AI와 디지털 협업도구로 여는 프로젝트 수업의 미래</p>
+        </div>
+    </div>
+</body>
+</html>
