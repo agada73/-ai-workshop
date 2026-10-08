@@ -1,0 +1,80 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>현장훈련 AI 5문 퀴즈</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* layout: one column, one card per question, score at the end */
+:root{--bg:#F7F8F2;--fg:#262626;--muted:#6B6B6B;--card:#FFFFFF;--line:#D3D8C2;--pri:#4A5D23;--sec:#6B7E3A;--light:#EEF1E0;--gold:#B9C77A;--ok:#4A5D23;--bad:#A3482E;--okbg:#EEF1E0;--badbg:#F6E7E1}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1C2114;--fg:#ECEFE3;--muted:#A9B197;--card:#262D1C;--line:#3B4530;--pri:#B9C77A;--sec:#8DA03A;--light:#2F3823;--gold:#B9C77A;--ok:#B9C77A;--bad:#E09A82;--okbg:#2F3823;--badbg:#3A2A24;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1C2114;--fg:#ECEFE3;--muted:#A9B197;--card:#262D1C;--line:#3B4530;--pri:#B9C77A;--sec:#8DA03A;--light:#2F3823;--gold:#B9C77A;--ok:#B9C77A;--bad:#E09A82;--okbg:#2F3823;--badbg:#3A2A24;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:"Noto Sans KR","Malgun Gothic",system-ui,sans-serif;padding-inline:16px;padding-block:24px 48px;line-height:1.55}
+.wrap{max-width:640px;margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:.08em;color:var(--sec);font-weight:700;text-transform:uppercase}
+h1{font-size:26px;font-weight:900;margin:6px 0 4px;text-wrap:balance;color:var(--pri)}
+.lead{color:var(--muted);margin:0 0 20px;font-size:14px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px}
+.q .n{font-size:12px;color:var(--sec);font-weight:700}
+.q h2{font-size:17px;margin:4px 0 12px;font-weight:700;text-wrap:balance}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:transparent;color:var(--fg);font:inherit;text-align:left;cursor:pointer;width:100%}
+.opt:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+.opt .k{flex:0 0 24px;height:24px;border-radius:50%;background:var(--light);color:var(--pri);font-weight:700;font-size:13px;display:grid;place-items:center}
+.opt.sel{border-color:var(--pri)}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt[disabled]{cursor:default}
+.exp{margin-top:12px;padding:12px;border-radius:10px;background:var(--light);font-size:14px}
+.exp b{color:var(--pri)}
+.exp .src{display:block;margin-top:6px;font-size:12px;color:var(--muted);word-break:break-all}
+.score{background:var(--pri);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:8px}
+.score .big{font-size:40px;font-weight:900;font-variant-numeric:tabular-nums}
+.score p{margin:6px 0 0;font-size:14px;opacity:.9}
+.foot{font-size:12px;color:var(--muted);margin-top:24px}
+button.reset{margin-top:12px;background:transparent;border:1.5px solid var(--gold);color:inherit;border-radius:999px;padding:8px 16px;font:inherit;cursor:pointer}
+</style>
+<div class="wrap">
+  <div class="eyebrow">가르치는 사람이 먼저 쓰는 AI · 확인 퀴즈</div>
+  <h1>현장훈련 AI 5문 퀴즈</h1>
+  <p class="lead">오늘 들은 내용으로 5문항. 점수는 어디에도 저장되지 않습니다. 틀린 문항이 다음 질문의 출발점입니다.</p>
+  <div id="quiz"></div>
+  <div id="score" hidden class="score"><div class="big"></div><p></p><button class="reset" id="reset">다시 풀기</button></div>
+  <p class="foot">울산과학대학교 · 2026 일학습병행 학습기업 전담인력 커뮤니티 · 강사 유수경</p>
+</div>
+<script>
+const Q=[
+{q:"2025년 기준, 생성형 AI를 써 본 경험이 있는 국민의 비율은 어느 정도일까요?",o:["약 12%","약 24%","약 39%","약 60%"],a:2,e:"2023년 12.3% → 2024년 24.0% → 2025년 38.9%로 2년 만에 3배가 되었습니다. 학습근로자도 이미 AI로 묻고 정리해서 옵니다.",s:"방송미디어통신위원회·KISDI, 2025년 지능정보사회 이용자 패널조사(2026.5.28)"},
+{q:"2026년 6월 일학습병행 리더십 서밋 둘째 날의 핵심 의제는 무엇이었을까요?",o:["훈련비 단가 인상","기업현장교사 양성교육의 AI 기반 개편","외부평가 폐지","학습근로자 모집 확대"],a:1,e:"양성교육(1·2급) AI 개편, 교육포털(LMS) 고도화, AI 챗봇 도입, 마이크로러닝·멘토강사 운영이 제시되었습니다. 현장교사를 가르치는 교육이 먼저 AI로 바뀝니다.",s:"데일리안(2026.6.29), 헤럴드경제(2026.6.28)"},
+{q:"NotebookLM이 ChatGPT와 가장 다른 점은 무엇일까요?",o:["한국어를 더 잘한다","내가 넣은 자료 안에서만 답하고 출처 번호를 붙인다","무료로 영상을 만들어 준다","인터넷 검색이 더 빠르다"],a:1,e:"넣은 자료(학습모듈·작업표준·운영규정)만 근거로 답하고 출처 번호로 원문 위치를 확인할 수 있어, 지어내는 답이 줄어듭니다. 그래서 훈련 준비와 규정 찾기에 맞습니다.",s:"강의 18·32장"},
+{q:"다음 중 외부 AI에 올려도 되는 것은 무엇일까요?",o:["학습근로자 8명의 이름·생년월일이 든 출결 엑셀","설비 배치와 도면이 함께 찍힌 작업 사진","공개된 일학습병행 운영규정 PDF","회사 공정 조건과 단가가 적힌 작업표준서"],a:2,e:"공개된 규정은 괜찮습니다. 개인정보(이름·생년월일), 회사 기밀(도면·공정 조건·단가)은 가리거나 지우고, 회사가 승인한 도구만 씁니다. 교육기관 유출 사고의 74.9%는 담당자 부주의였습니다.",s:"교육부·진선미 의원실(2024.10.8), 개인정보보호위원회 안내서(2025.8.6)"},
+{q:"인사혁신처가 국외훈련 보고서 1,385건을 점검해 11건을 적발하고 훈련비를 환수했습니다. 문제의 핵심은 무엇이었을까요?",o:["AI를 사용한 것 자체","AI가 지어낸 내용을 확인하지 않고 제출한 것","보고서가 너무 길었던 것","이모지를 쓴 것"],a:1,e:"AI를 쓴 것이 아니라, 환각(지어낸 문헌)을 확인하지 않고 낸 것이 문제였습니다. 훈련일지·결과보고서는 훈련비의 근거입니다. 확인은 사람의 몫입니다.",s:"서울신문·전자신문(2026.5.22), 인사혁신처 보도자료"}
+];
+const K=["A","B","C","D"];
+const root=document.getElementById("quiz");
+let answered=0,correct=0;
+function render(){
+  root.innerHTML="";answered=0;correct=0;document.getElementById("score").hidden=true;
+  Q.forEach((it,i)=>{
+    const d=document.createElement("div");d.className="q";
+    d.innerHTML=`<div class="n">문항 ${i+1} / ${Q.length}</div><h2>${it.q}</h2><div class="opts"></div>`;
+    const ops=d.querySelector(".opts");
+    it.o.forEach((t,j)=>{
+      const b=document.createElement("button");b.className="opt";b.type="button";b.id=`q${i}o${j}`;
+      b.innerHTML=`<span class="k">${K[j]}</span><span>${t}</span>`;
+      b.addEventListener("click",()=>{
+        if(d.dataset.done)return;d.dataset.done="1";answered++;
+        const ok=j===it.a;if(ok)correct++;
+        ops.querySelectorAll(".opt").forEach((x,k)=>{x.disabled=true;if(k===it.a)x.classList.add("right");else if(k===j)x.classList.add("wrong")});
+        const e=document.createElement("div");e.className="exp";
+        e.innerHTML=`<b>${ok?"맞았습니다.":"정답은 "+K[it.a]+"입니다."}</b> ${it.e}<span class="src">출처: ${it.s}</span>`;
+        d.appendChild(e);
+        if(answered===Q.length){const s=document.getElementById("score");s.hidden=false;s.querySelector(".big").textContent=`${correct} / ${Q.length}`;s.querySelector("p").textContent=correct===Q.length?"오늘 내용을 모두 잡으셨습니다. 내일 OJT 하나부터 시작해 보세요.":"틀린 문항의 해설을 한 번 더 읽어 보세요. 그 부분이 내일 바로 쓸 수 있는 지점입니다.";s.scrollIntoView({behavior:"smooth",block:"center"})}
+      });
+      ops.appendChild(b);
+    });
+    root.appendChild(d);
+  });
+}
+document.getElementById("reset").addEventListener("click",render);
+render();
+</script>
+
+</body></html>
